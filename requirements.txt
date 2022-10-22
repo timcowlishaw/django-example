@@ -1,0 +1,8 @@
+# This file describes all the python libraries and packages we need to run our project,
+# and the version numbers we're using, so that we can install them and keep them up to date
+# automatically, using a command called `pip`. (you can see where this is done in
+# the Dockerfile if you're interested).
+
+# First of all, we need Django, and we want to make sure it is at least version 4.1.2,
+# which was the latest at the time I wrote this.
+Django>=4.1.2

@@ -1,0 +1,32 @@
+# This is the docker-compose.yml file, which tells Docker (via it's companion tool docker-compose)
+# how to run this project.
+
+# First of all, we need to specify the version of the docker-compose configuration language
+# we're using, so that docker knows how to interpret everything below.
+version: "3.9"
+
+# Now we define our first *service*, which we'll chose to call 'web'. This is our django application itself,
+# (We give it a name, as we might in the future have other services we want to run at the same time, such as a database.)
+services:
+  web:
+      # The first thing to do is to tell Docker how to build the 'web' service before running it.
+      # In this case we tell it that it's the project in the current directory (that's what the '.'/dot means.)
+      # Docker then goes to that directory and looks for a file called `Dockerfile` which gives it the specific instructions
+      # on how to build the project.
+      build: .
+
+      # Now we tell docker what command to run when it's finished building in order to start the service. This is the command
+      # that Django provides to start a development server on port 8000.
+      command: python manage.py runserver 0.0.0.0:8000
+
+      # We want to be able to edit the files in the current directory and have docker see the changes, so we have to mount it as
+      # a 'volume' - like a shared folder between us and the docker container. This says that the current directory ('.')
+      # should be shared with the folder called "/code" on the docker container, so that the two are kept in sync.
+      volumes:
+        - .:/code
+
+      # Finally we want to be able to access our django app as if it was running on our own computer (by going to a
+      # web browser and going to "http://localhost:8000"), so we tell docker to attach port 8000 on the container
+      # (where django is listening) to port 8000 on our computer itself (where we're going to try and connect with the browser)
+      ports:
+        - "8000:8000"

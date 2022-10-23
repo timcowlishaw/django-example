@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -37,6 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # CHANGE: When we add our 'pages' application, we need to tell Django that it's a part
+    # of this project. to do that, we need to add a reference to it to this list,
+    # of applications that the django project contains. That reference is the name of the
+    # class defined in our `pages/apps.py` file, that Django creates for us. If you look in there,
+    # you'll see that it's called `PagesConfig`, so we add a reference to it here.
+    # This says "in the pages module, there's another module called apps, and in that module there is a class called PagesConfig".
+    # A module is typically a .py file, or a folder that contains the magic blank file called __init__.py, which you'll see dotted
+    # around this project.
+    'pages.apps.PagesConfig',
+
 ]
 
 MIDDLEWARE = [

@@ -9,7 +9,7 @@ from django.urls import path
 # We also need to import the views we've written in views.py so that we can wire them up to urls:
 # the "." (dot) here signifies that we're importing from a views module that's inside the same folder
 # as we're in currently.
-from .views import home
+from .views import home, fruit_list
 
 # We then make a list of 'url patterns' which define our urls. Django comes looking
 # for this object when we include the file.
@@ -18,4 +18,7 @@ urlpatterns = [
     # The homepage has a blank path ("ie there's nothing after the "/" (slash), so
     # this pattern, with a blank path, matches the homepage, and renders our "home" view.
     path("", home, name="home"),
+
+    #We add a second path, for our list of fruit, which we'll make available at "/fruit":
+    path("fruit", fruit_list, name="fruit_list")
 ]

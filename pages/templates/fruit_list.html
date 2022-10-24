@@ -1,0 +1,23 @@
+<h1>Our list of fruits.</h1>
+<!-- In this page, we want to display the list of `fruit` that was passed to us by
+    our view, and, since it's a list, we need to do that by _iteration_, rendering each
+    item of the list one at a time.
+    We do that using some Jinja2 *tag*s which you will see a lot in django apps - they
+    are special keywords contained within curly brackets and percentage signs.
+    which control the way the page is rendered. We're going to use the tags "for" and "endfor" which
+    allow us to iterate over a list of thigs:
+-->
+
+<ul>
+{% for fruit in fruits %}
+   <!-- Everything inside this 'for' loop will be repeated once for each item in the list -->
+   <!-- When we want to display a value we've got from our view, we use Jinja2 *variables*, represented
+      with doule curly brackets and the name of a variable. This then inserts the value
+      of that variable in python into our html. This can be used in any part of the template - here we're
+      inserting text into our html, but also inserting a colour into a `style` attribute, for instance:
+   -->
+   <li style="background-color: {{fruit.color}};">
+      {{fruit.name}} ({{fruit.weight}}g)
+   </li>
+{% endfor %}
+</ul>
